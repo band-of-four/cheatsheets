@@ -16,8 +16,9 @@ git push origin master
 
 ```
 git add . # добавить изменения
-git status # проверить, что я не добавил ничего лишнего
+git status # проверить, что не добавил ничего лишнего
 git commit -m "message"
 git push origin master
-если на этапе git push он отказывается (т.е. в репозитории есть твои коммиты), то я просто делаю git pull --rebase, затем опять git push
+если на этапе git push он отказывается (т.е. в репозитории есть новые коммиты), 
+то я просто делаю git pull --rebase, затем опять git push
 ```
