@@ -79,3 +79,25 @@ newF(); // this === 3
 ```
 
 При вызове функции у экземпляра объекта, `this` становится равен экземпляру.
+
+### ES6
+
+`class Foo {}` транслируется в `function Foo()`, т.е. функцию конструктора. При этом тело конструктора объявляется внутри класса:
+
+```js
+class Foo {
+  constructor(arg1, arg2) {
+    this.something = arg1 + arg2;
+  }
+}
+```
+
+Классы могут быть наследованы:
+
+```js
+class Foo extends Bar {
+  constructor() {
+    super(..); // возможно вызвать constructor у Bar
+  }
+}
+```
