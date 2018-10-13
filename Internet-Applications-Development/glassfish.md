@@ -50,3 +50,18 @@ asadmin deploy --force true --port [admin port] path/to/war.war
 Параметр `--force true` нужен для того, чтобы перезаписать приложение,
 если оно уже было загружено.
 
+## Проброс портов на локальную машину
+
+Glassfish из внешнего мира недоступен, поэтому...
+
+Запуск глассфиша
+`asadmin start-domain —domaindir ~/YOUR_DIR`
+
+Логи лежат в `~/YOUR_DIR/logs/server.log`
+
+Проброс портов
+http port         - portbase + 80
+админка Glassfish - portbase + 48
+`ssh -L LOCAL_PORT:localhost:GLASSFISH_PORT helios`
+
+терминалы с ssh -L не закрывать!!
