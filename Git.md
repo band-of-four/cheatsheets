@@ -69,3 +69,10 @@ git log --graph --decorate --oneline # смотрим SHA-1 id нашего не
 git revert SHA-1 # удаляем изменения неудавшегося коммита
 git push origin master # push`им изменения
 ```
+## Я добавил новый файл в .gitignore, но он уже есть в репозитории, как мне удалить его оттуда?
+
+```
+git rm -r --cached . 
+git add . 
+git commit -m "Removing all files in .gitignore"
+```
