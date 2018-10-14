@@ -55,12 +55,15 @@ asadmin deploy --force true --port [admin port] path/to/war.war
 Glassfish из внешнего мира недоступен, поэтому...
 
 Запуск глассфиша
+
 `asadmin start-domain —domaindir ~/YOUR_DIR`
 
 Логи лежат в `~/YOUR_DIR/logs/server.log`
 
-Проброс портов
+__Проброс портов__
+
 http port         - portbase + 80
+
 админка Glassfish - portbase + 48
 `ssh -L LOCAL_PORT:localhost:GLASSFISH_PORT helios`
 
