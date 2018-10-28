@@ -47,3 +47,39 @@ $orange = new Orange();
 $orange->sayColor();
 ?>
 ```
+
+# Задания на JS
+
+Написать функцию, которая на странице заменяет все тестовые поля ввода на кнопки:
+```js
+function replaceTextFields() {
+  Array.prototype.slice.call(document.querySelectorAll('input[type=text]')).forEach(function(textField) {
+    textField.setAttribute('type', 'submit');
+  });
+}
+```
+
+Написать функцию, которая запрещает писать числа и буквы латинского алфавита:
+```js
+document.querySelector('#textfield').onkeypress = function(e) {
+  var input = e.key.toLowerCase();
+  if (input >= 'a' && input <= 'z') return false;
+  if (input >= '0' && input <= '9') return false;
+  return true;
+};
+```
+
+Написать функцию, которая заменяет содержимое `<div>` с именем класса `nyan` на изображение по ссылке: http://www.example.com/nyancat.gif:
+```js
+function insertNyancat() {
+  document.querySelector('div.nyan').innerHTML = '<img src="http://www.example.com/nyancat.gif">';
+}
+```
+
+Написать функцию, которая будет закрывать текущее окно, если в нем открыт https://www.google.ru:
+```js
+function leaveIfGoogle() {
+  if (window.location.href.startsWith('https://www.google.ru'))
+    window.close();
+}
+```
