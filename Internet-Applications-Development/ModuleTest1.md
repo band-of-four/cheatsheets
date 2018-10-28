@@ -17,3 +17,33 @@
 
 При поступлении HTTP запроса веб-контейнер создает новые объекты `HttpServletRequest` и `HttpServletResponse`
 и передает их фильтрам, потом сервлету.
+
+# Задания на PHP
+
+Написать скрипт, выводящий приветствие пользователю. Имя пользователя передается как get параметр:
+```php
+<?php
+echo 'Hello ' . htmlspecialchars($_GET["name"]) . '!';
+?>
+```
+
+Написать класс на PHP:
+```php
+class Fruit {
+  protected $color = '';
+}
+
+class Orange extends Fruit {
+  public function __construct(){
+    $this->color = 'orange';
+  }
+
+  public function sayColor() {
+    echo $this->color . "\n";
+  }
+}
+
+$orange = new Orange();
+$orange->sayColor();
+?>
+```
