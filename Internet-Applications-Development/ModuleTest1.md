@@ -67,6 +67,34 @@ function leaveIfGoogle() {
 }
 ```
 
+JS-функция, открывающая в новом окне браузера сайт http://www.google.com
+
+```js
+window.open("http://google.com", "newwin", "width=1200,height=600");
+```
+
+Реализовать функцию на JavaScript, которая будет закрывать текущее окно, если в нем открыт https://www.google.ru
+
+```js
+function close_window() {
+  if (window.location.href===”https://www.google.ru”) {
+	window.close();
+  }
+}
+```
+
+JS-функция, удаляющая со страницы все элементы <div> c классом “MarkedToRemove”
+	
+```js
+Array.prototype.slice.call(document.getElementsByTagName("div")).forEach(function (e) {
+   if (e.getAttribute("class") === "MarkedToRemove"){
+       e.parentNode.removeChild(e);
+   }
+});
+```
+
+
+
 # Задания с CSS
 
  Правило css, меняющее цвет фона на желтый, если ссылка посещена и не лежит в классе "news"
@@ -99,4 +127,32 @@ public class NameServlet extends HttpServlet {
     }
   } 
 }
-'''
+```
+
+Код фильтра запросов, запрещающий доступ к приложению неавторизированным пользователям(у неавт пол в запросе отсутствует заголовок x-application-user
+
+```java
+public class TestFilter implements Filter {
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+    }
+
+    @Override
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+
+        HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
+
+        if(httpServletRequest.getHeader("x-application-user") == null){
+            httpServletRequest.getRequestDispatcher("/").forward(servletRequest, servletResponse);
+        }
+
+        filterChain.doFilter(servletRequest, servletResponse);
+    }
+
+    @Override
+    public void destroy() {
+
+    }
+}
+```
