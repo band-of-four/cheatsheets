@@ -83,3 +83,18 @@ function leaveIfGoogle() {
     window.close();
 }
 ```
+# Задания по сервлетам
+
+Написать сервлет, который принимает из http запроса параметр name и выводит его. Если параметр не обнаружен то вывести Anonymous user
+``` java
+public class NameServlet extends HttpServlet {
+     public void service(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
+     PrintWriter out = response.getWriter();
+     if (request.getParameter("name") != null ) {
+     out.println(request.getParameter("name"));
+      } else { 
+     out.println("Anonymous user");
+      }
+   } 
+}
+'''
