@@ -172,7 +172,8 @@ public class TestFilter implements Filter {
 ```jsp
  <%
 if(request.getAttribute(“123”)==null){
-...
+	String error = "Please set '123' param";
 }
 %>
+<p>${error}</p>
 ```
