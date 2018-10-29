@@ -165,6 +165,21 @@ public class TestFilter implements Filter {
 }
 ```
 
+Написать сервлет, который будет возвращать все запросы на переадресацию на сайт google.com
+
+```java
+public class RedirectServlet extends HttpServlet {
+	RedirectFilter filter = new RedirectFilter;
+	public void service(HttpServletRequest request, HttpServletResponse response) throws IOExeption, ServletException {
+		filter.doFilter(request, response);
+		int status = response.getStatus();
+		if (status == 302) {
+			response.sendRedirect("http://google.com");
+		}
+	}
+}
+```
+
 # JSP
 
 Страница JSP, проверяющая есть ли /какой-то параметр/ в запросе и если нету  выводящая сообщение об ошибке
