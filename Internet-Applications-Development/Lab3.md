@@ -343,3 +343,62 @@ public class CustomerBean {
 `@CustomScoped(value="#{someMap}")` - экземпляр создаётся и сохраняется в Map. Программист сам управляет областью жизни.
 
 `@NoneScoped` - экземпялр создаётся, но не привязывается ни к одной области жизни. Применяется когда к нему обращаются другие managed bean'ы, имеющие область жизни. _Бин без контекста._
+
+## 7. Конфигурация JSF-приложений. Файл faces-config.xml. Класс FacesServlet.
+
+__faces-config.xml__ — конфигурационный файл JavaServer Faces, который должен находиться в директории WEB-INF проекта. В этом файле могут находиться настройки managed bean, конвертеры, валидаторы, локализация, навигации и другие настройки, связанные с JSF
+
+### faces-config.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+    http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd" 
+    version="1.2">
+  <managed-bean>
+    <managed-bean-name>calculator</managed-bean-name>
+    <managed-bean-class>com.arcmind.jsfquickstart.model.Calculator</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+</faces-config>
+```
+
+Объявление управляемого объекта: имя объекта задается с помощью  `<managed-bean-name>`, полное имя класса - `<managed-bean-class>`. Класс управляемого объекта обязан содержать конструктор без параметров.
+
+`<managed-bean-scope>` определяет, где JSF будет искать объект. Если объект привязан к представлению и не существует на момент обращения, то JSF создаст его автоматически с помощью API универсального языка выражений EL. Объект будет доступен в течение обработки одного запроса. 
+
+По умолчанию используется faces-config, но можно использовать дополнительные конфиги, перечислив их в web.xml.
+
+ ### Класс FacesServlet
+ 
+- Обрабатывает запросы с браузера.
+- Формирует объекты-события и вызывает методы-слушатели.
+
+### 8. Навигация в JSF-приложениях.
+
+Механизм нафигации JSF позволяет определить связь между логическим признаком результата и следующим представлением. Реализуется объектами `NavigationHandler`. Навигация осуществляется с помощью правил перехода.
+
+Ссылку можно добавить тремя различными способами:
+
+1. С помощью commandLink и обычного правила перехода, определяемого в faces-config.xml
+
+```xml
+<navigation-rule>
+  <navigation-case>
+    <from-outcome>CALCULATOR</from-outcome>
+    <to-view-id>/pages/calculator.jsp</to-view-id>
+  </navigation-case>
+</navigation-rule>
+```
+
+2. С помощью commandLink и правила перехода, использующего элемент <redirect>.
+  
+3. Связывание с помощью прямой ссылки (элемента <h:outputLink>)
+
+```html
+<h:outputLink value="pages/calculator.jsf">
+<h:outputText value="Calculator Application (outputlink)"/>
+</h:outputLink>
+```
