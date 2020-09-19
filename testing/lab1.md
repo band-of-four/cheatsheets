@@ -148,4 +148,47 @@ __Регрессионное тестирование__ — собиратель
 
 ## 10. Библиотека JUnit. Особенности API. Класс junit.framework.Assert.
 
+__JUnit__ — библиотека для модульного тестирования программного обеспечения на языке Java.
+
+### Функциональность
+
+`junit.framework.Assert`
+
+`assertEquals` -- использует метод `equals()`
+
+`assertFalse`
+
+`assertNotNull`
+
+`assertNull`
+
+`assertNotSame`
+
+`assertSame` -- cравнивает объекты при помощи  `==` 
+
+`assertTrue`
+
+
+### Аннотации
+
+`@BeforeEach`
+
+`@AfterEach`
+
+`@BeforeAll`
+
+`@AfterAll`
+
+`@Disabled`
+
 ## 11. Отличия JUnit 3 от JUnit 4.
+
+
+|junit 3 | junit 4 | junit 5 | 
+|--------|---------|---------|
+|соглашение об именовании (должно начинаться с test) | @Test | @Test | 
+|использует java 5|java 7|Java 8|
+|для того, чтобы отловить эксепшн надо обернуть эксепшен в try-catch и в catch учесть то, что исключение произошло| ` @Test(expected=java.lang.ArrayIndexOutOfBoundsException.class)`| `assertThrows<вид> {код}`|
+|`setUp()` / `tearDown()`|`@Before`/`@After` |`@BeforeEach`/`@AfterEach`|
+|-|`@BeforeClass`/`@Afterclass`|`@BeforeAll`/`@AfterAll`|
+|-|`@Ignore`|`@Disabled`|
