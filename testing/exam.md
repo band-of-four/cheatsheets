@@ -663,3 +663,106 @@ __Таблица переходов:__
 <img src="https://sun9-44.userapi.com/impf/xbAytM9ccSnR3dAdR00wtMJYfPCbbETt4gWQhQ/eULY0YsjyDM.jpg?size=974x594&quality=96&proxy=1&sign=f8ae11866fa78fa5d6233ea126d29f36&type=album">
 
 
+
+# 25. Библиотека JUnit. Класс junit.framework.Assert. 
+
+В JUnit существует класс Assert, позволяющий использовать методы для сравнения результата теста с ожидаемым значением.
+
+
+## Основные функции
+
+
+`assertEquals` -- использует метод `equals()`
+
+`assertFalse`
+
+`assertNotNull`
+
+`assertNull`
+
+`assertNotSame`
+
+`assertSame` -- cравнивает объекты при помощи  `==` 
+
+`assertTrue`
+
+
+assertEquals не существует для примитивных типов, потому следует следить за тем, чтобы не произошло автобоксинга(например, результат теста int сравнивается с результатом метода sum, который является long)
+
+
+
+
+# 26. Библиотека JUnit. Основные аннотации для исполнения тестов. 
+
+### Основние аннотации
+
+`@Test`
+
+`@BeforeEach`
+
+`@AfterEach`
+
+`@BeforeAll`
+
+`@AfterAll`
+
+`@Disabled`
+
+
+# 27. Библиотека JUnit. Дополнительные возможности, запуск с параметрами. 
+
+`@RunWith`  - как запускается тест, класс, указанный в аннотации должен наследоваться от Runner
+
+`@RunWith(Parameterized.class)` -параметризованные тесты
+
+`@Parameters` можно вводить значения данных непосредственно в поля без необходимости использования конструктора
+
+Пример:
+
+```java
+
+@RunWith(Parameterized.class)
+public class ParameterizeTest {
+    private int valueA;
+    private int valueB;
+    private int expected;
+ 
+    public ParameterizeTest(int valueA, int valueB, int expected) {
+        this.valueA = valueA;
+        this.valueB = valueB;
+        this.expected = expected;
+    }
+ 
+    @Parameterized.Parameters(name = "{index}:sumOf({0}+{1})={2}")
+    public static Iterable<Object[]> dataForTest() {
+        return Arrays.asList(new Object[][]{
+                {1, 1, 2},
+                {2, 6, 8},
+                {18, 2, 20},
+                {13, 15, 28},
+                {1, 5, 6}
+        });
+    }
+ 
+    @Test
+    public void paramTest() {
+        assertEquals(expected, new Calculator().getSum(valueA,valueB));
+    }
+}
+
+```
+
+
+
+
+# 28. Анализ эквивалентности с использованием JUnit. 
+
+
+
+# 29. Тестирование алгоритмов с использованием JUnit. 
+
+
+
+# 30. Модульное тестирование доменной модели с использованием JUnit. 
+
+
