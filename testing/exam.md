@@ -808,11 +808,57 @@ public class ParameterizeTest {
 
 # 28. Анализ эквивалентности с использованием JUnit. 
 
+Анализ эквивалентности: вместо тестирования всех возможных значений определяются группы входных параметров, которые одинаково влияют на систему. В каждой группе выделяются граничные значения, для которых составляются тестовые сценарии. Поскольку для каждой группы граничных значений результат воздействия на систему будет схожий, можно использовать параметризованные тесты:
 
+```java
+@ParameterizedTest
+@ValueSource(ints = {-1, Integer.MIN_VALUE}) // boundary values
+void testNegative(int number) {
+    assertTrue(Algorithm.checkIsNegative(number));
+}
+
+@ParameterizedTest
+@ValueSource(ints = {0, 1, Integer.MAX_VALUE}) // boundary values
+void testNonNegative(int number) {
+    assertFalse(Algorithm.checkIsNegative(number));
+}
+```
 
 # 29. Тестирование алгоритмов с использованием JUnit. 
 
+Если алгоритм удобно тестировать проверкой пар входных-выходных значений (метод черного ящика), в JUnit используются параметризованные тесты:
 
+```java
+@ParameterizedTest
+@CsvFileSource(files = "test_input.csv")
+void testWithCsvFileSourceFromFile(String input1, String input2, int expected) {
+    int actual = runAlgorithm(input1, input2);
+    assertEquals(expected, actual);
+}
+```
+
+Параметризованный тест подойдет и в том случае, когда логику алгоритма удобно представить таблицей решений.
+
+Для того чтобы протестировать алгоритм в изоляции от зависимостей, применяются заглушки. Их можно реализовать
+средствами языка, однако удобнее использовать специальные библиотеки, облегчающие их написание (Mockito).
+
+Тест алгоритма на основании таблицы решений с использованием Mockito будет выглядеть следующим образом:
+
+```java
+@ParameterizedTest
+@CsvSource({
+        "5, false, true, true", // кол-во долгов, есть долг по тестированию?, бюджет?, отчислить?
+        "1, true, false, false",
+        // ...
+})
+void testDecisionTable(int numFailedGrades, boolean failedTesting, boolean hasStateGrant, boolean shouldBeExpelled) {
+    Student student = Mockito.mock(Student.class);
+    Mockito.when(student.getFailedGrades()).thenReturn(numFailedGrades);
+    Mockito.when(student.getGrade("Software Testing")).thenReturn(failedTesting ? Grade.FAILED : Grade.A);
+    Mockito.when(student.hasStateGrant()).thenReturn(hasStateGrant);
+    assertEquals(shouldBeExpelled, DeanOffice.getExpulsionStatus(student));
+}
+```
 
 # 30. Модульное тестирование доменной модели с использованием JUnit. 
 
