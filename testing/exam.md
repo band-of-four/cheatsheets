@@ -878,6 +878,25 @@ void testDecisionTable(int numFailedGrades, boolean failedTesting, boolean hasSt
 одну инстанцию, которая инициализируется в методе с аннотацией `@BeforeAll` и деинициализируется в методе с аннотацией
 `@AfterAll`.
 
+Часто доменная модель предполагает обработку пользовательских (или стандартных) исключений. Для этого в JUnit существует
+метод `assertThrows`, который принимает ссылку на класс исключения и анонимную функцию или инстанцию `Executable` и
+возвращает полученное исключение, параметры которого можно проверять в дальнейшем. Пример:
+
+```java
+@Test
+void throwsOnInvalidPhoneNumber() {
+  ContactBook contactBook = Mockito.mock(ContactBook.class);
+  Mockito.when(contactBook.getNumberByName("Mom")).thenReturn("abcdefg");
+  Phone phone = new Phone(contactBook);
+  Exception exception = assertThrows(IllegalCharacterInNumberException.class, () -> {
+    phone.call("Mom");
+  });
+  String expectedMessage = "Illegal character 'a', the phone number should contain only digits, '-' or '+' characters";
+  String actualMessage = exception.getMessage();
+  assertTrue(actualMessage.contains(expectedMessage));
+}
+```
+
 # 31. Система Selenium. Архитектура, основные команды написания сценариев. 
 
 Selenium - система автоматического управления браузерами.
