@@ -984,7 +984,7 @@ Selrnium IDE
 
 #### Синхронизация:
 
-- `waitForPageLoad(timeout`) загрузка страницы
+- `waitForPageLoad(timeout)` загрузка страницы
  ошибка по таймауту
 - `waitForAlert`
 - `waitForTable` — полная загрузка таблицы
@@ -997,7 +997,20 @@ Selrnium IDE
 - `echo` — запись значения в лог selenium
 – Можно использовать `${var}`
 
+Пример:
 
+```java
+@Test
+void sampleTest() {
+  WebDriver driver = new FirefoxDriver(); // new ChromeDriver();
+
+  String baseUrl = "https://www.google.com/";
+  String expectedTitle = "Google";
+  
+  driver.get(baseUrl);
+  assertEquals(expectedTitle, driver.getTitle());
+}
+```
 
 # 32. Система Selenium. Assertion & Verification. Команды. 
 
