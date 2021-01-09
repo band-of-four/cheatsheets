@@ -734,7 +734,15 @@ __Таблица переходов:__
 
 assertEquals не существует для примитивных типов, потому следует следить за тем, чтобы не произошло автобоксинга(например, результат теста int сравнивается с результатом метода sum, который является long)
 
+Пример:
 
+```java
+@Test
+void sampleSumTest() {
+  long expected = 4;
+  assertEquals(expected, Calc.sum(2, 2));
+}
+```
 
 
 # 26. Библиотека JUnit. Основные аннотации для исполнения тестов. 
@@ -759,12 +767,47 @@ assertEquals не существует для примитивных типов,
 
 `@ParameterizedTest ` - позволяет запускать тестовый метод несколько раз с разными параметрами
 
+Пример:
+
+```java
+public class ModuleTests {
+  private Module module;
+  
+  @BeforeAll
+  void setupModule() {
+    module = new Module();
+    module.Setup();
+  }
+  
+  @AfterEach
+  void resetModule() {
+    module.Reset();
+  }
+  
+  @AfterAll
+  void disposeModule() {
+    module = null;
+  }
+  
+  @Test
+  public void test1() {
+    // test 1 logic
+  }
+  
+  // ...
+  
+  @Test
+  public void testN() {
+    // test N logic
+  }
+}
+```
 
 # 27. Библиотека JUnit. Дополнительные возможности, запуск с параметрами. 
 
 `@RunWith`  - как запускается тест, класс, указанный в аннотации должен наследоваться от Runner
 
-`@RunWith(Parameterized.class)` -параметризованные тесты
+`@RunWith(Parameterized.class)`  - параметризованные тесты
 
 `@Parameters` можно вводить значения данных непосредственно в поля без необходимости использования конструктора
 
