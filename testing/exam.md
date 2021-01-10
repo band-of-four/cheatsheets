@@ -694,9 +694,68 @@ __Таблица решений__ — способ компактного пре
 
 В таблицах решений представлен набор условий, одновременное выполнение которых должно привести к определённому действию.
 
-<img src='https://sun9-29.userapi.com/X2Mj1dIxmUAA4Jd8o_Oi3el8P4APe_fdFH8pEQ/qaW7NTQ-wIg.jpg'>
-
-
+<table class="wikitable sortable jquery-tablesorter">
+<thead><tr>
+<th class="unsortable"><bold>Условие</bold>
+</th>
+<th class="unsortable">
+</th>
+<th class="unsortable">
+</th>
+<th class="unsortable">
+</th>
+<th class="unsortable">
+</th>
+</tr></thead><tbody>
+<tr>
+<td>Ввод корректных данных в поле E-mail</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Ввод корректных данных в поле Password</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+</tr>
+<td>Ввод некорректных данных в поле E-mail</td>
+<td>-</td>
+<td>+</td>
+<td>-</td>
+<td>+</td>
+</tr>
+<tr>
+<td>Ввод некорректных данных в поле Password</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+</tr>
+</tr>
+<th class="unsortable"><bold>Действия</bold></th>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Проверить наличие баннера с информацией об успешной регистрации</td>
+<td>+</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Проверить наличие баннера с ошибкой "Введены некорректные данные"</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>+</td>
+</tr>
+</tbody><tfoot></tfoot></table>
 
 
 
